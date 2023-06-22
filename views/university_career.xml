@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--   -->
+<odoo>
+    <!-- tree view -->
+    <record id="view_tree_university_career" model="ir.ui.view">
+        <field name="name">university.career.tree</field>
+        <field name="model">university.career</field>
+        <field name="arch" type="xml">
+           <tree>
+               <field name="name"/>
+               <field name="code"/>
+               <field name="area"/>
+           </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_university_career_form" model="ir.ui.view">
+        <field name="name">university.career.form</field>
+        <field name="model">university.career</field>
+        <field name="arch" type="xml">
+            <form string="Careers">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="area"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="act_university_career">
+        <field name="name">Careers</field>
+        <field name="res_model">university.career</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_university_career" />
+     </record>
+
+    <menuitem id="submenu_university_career_action" name="Careers"
+              sequence="10" parent="university_campus_menu" action="act_university_career"/>
+
+</odoo>
+

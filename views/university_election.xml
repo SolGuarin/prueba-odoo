@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--   -->
+<odoo>
+    <!-- tree view -->
+    <record id="view_tree_university_election" model="ir.ui.view">
+        <field name="name">university.election.tree</field>
+        <field name="model">university.election</field>
+        <field name="arch" type="xml">
+           <tree>
+               <header>
+                   <button name="button_multi_start" string="Start" type="object" class="ml-1 oe_highlight"/>
+               </header>
+               <field name="name"/>
+               <field name="start_date"/>
+               <field name="end_date"/>
+               <field name="candidates"/>
+               <field name="state"/>
+           </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_university_election_form" model="ir.ui.view">
+        <field name="name">university.election.form</field>
+        <field name="model">university.election</field>
+        <field name="arch" type="xml">
+            <form string="Elections">
+                <header>
+                    <button name="button_start" string="Start" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ['closed', 'in_progres'])]}"/>
+                    <button name="button_close" string="Close" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ['draft', 'closed'])]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                    <notebook>
+                        <page string="candidates">
+                            <field name="candidates" domain="[('es_candidato', '=', True)]"/>
+                        </page>
+                        <page string="Votes">
+                            <field name="votes_ids">
+                                <tree>
+                                    <field name="candidate_id" avatar_field="candidate_image"/>
+                                    <field name="votes_qty"/>
+                                     <field name="candidate_image" widget="image" class="oe_avatar"/>
+                                </tree>
+                            </field>
+<!--                            <field name="candidates">-->
+<!--                                <tree>-->
+<!--                                    <field name="image_1920" widget="image"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+
+    </record>
+
+     <record model="ir.actions.act_window" id="act_university_election">
+        <field name="name">Elections</field>
+        <field name="res_model">university.election</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_university_election" />
+     </record>
+
+    <menuitem id="submenu_university_election_action" name="Elections"
+              sequence="10" parent="university_campus_menu" action="act_university_election"/>
+
+</odoo>
+
+
+
+

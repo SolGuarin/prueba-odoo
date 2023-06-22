@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--   -->
+<odoo>
+    <!-- tree view -->
+    <record id="view_tree_ej_estudiante" model="ir.ui.view">
+        <field name="name">ej.estudiante.tree</field>
+        <field name="model">ej.estudiante</field>
+        <field name="arch" type="xml">
+           <tree>
+                    <field name="nro_identificacion" optional="show"/>
+                    <field name="nombre"/>
+                    <field name="carrera"/>
+                    <field name="sede"/>
+           </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_ej_estudiante_form" model="ir.ui.view">
+        <field name="name">ej.estudiante.form</field>
+        <field name="model">ej.estudiante</field>
+        <field name="arch" type="xml">
+            <form string="Estudiantes List">
+                <group>
+                    <group>
+                        <field name="nro_identificacion"/>
+                        <field name="nombre"/>
+                    </group>
+                     <group>
+                        <field name="carrera" required="1"/>
+                        <field name="sede"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="act_ej_estudiante">
+        <field name="name">estudiante</field>
+        <field name="res_model">ej.estudiante</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id"  ref="view_tree_ej_estudiante" />
+     </record>
+
+
+    <menuitem id="ej_estudiantes_menu" name="Estudiantes" web_icon="stock,static/description/icon.png"
+              sequence="10"/>
+
+    <menuitem id="submenu_ej_estudiantes_menu" name="Estudiantes"
+              sequence="10" parent="ej_estudiantes_menu"/>
+
+    <menuitem id="submenu_ej_estudiantes_action" name="Estudiantes"
+              sequence="10" parent="submenu_ej_estudiantes_menu" action="act_ej_estudiante"/>
+
+</odoo>
+

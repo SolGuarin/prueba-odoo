@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="bulk_import">
+            <field name="name">Mi Wizard Form View</field>
+            <field name="model">bulk.import</field>
+            <field name="arch" type="xml">
+
+
+                <form string="Mi Wizard">
+                    <group>
+                        <group>
+                            <button name="download_file" string="Download template" type="object" class="oe_highlight"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="file_attached" filename="nombre_archivo" widget="binary" string="Load file"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="upload_file" string="Accept" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_bulk_import">
+            <field name="name">Bulk Import</field>
+            <field name="res_model">bulk.import</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="bulk_import"/>
+            <field name="target">new</field>
+
+        </record>
+
+        <menuitem
+                id="submenu_bulk_import_action"
+                name="Bulk Import"
+                sequence="10"
+                parent="university_campus_menu"
+                action="act_bulk_import"
+        />
+
+    </data>
+</odoo>

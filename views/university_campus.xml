@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--   -->
+<odoo>
+    <!-- tree view -->
+    <record id="view_tree_university_campus" model="ir.ui.view">
+        <field name="name">university.campus.tree</field>
+        <field name="model">university.campus</field>
+        <field name="arch" type="xml">
+           <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="city"/>
+                    <field name="country"/>
+           </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_university_campus_form" model="ir.ui.view">
+        <field name="name">university.campus.form</field>
+        <field name="model">university.campus</field>
+        <field name="arch" type="xml">
+            <form string="Campus list">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="city"/>
+                        <field name="country"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="act_university_campus">
+        <field name="name">Campus</field>
+        <field name="res_model">university.campus</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_university_campus" />
+     </record>
+
+
+    <menuitem id="university_campus_menu" name="University" web_icon="stock,static/description/icon.png"
+              sequence="10"/>
+
+    <menuitem id="submenu_university_campus_menu" name="Campus"
+              sequence="10" parent="university_campus_menu"  action="act_university_campus"/>
+
+
+</odoo>
+

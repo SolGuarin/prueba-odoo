@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="view_ej_estudiante_form" model="ir.ui.view">
+        <field name="name">ej.estudiante.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="es_estudiante"/>
+                <field name="es_candidato"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_student_notebook_form" model="ir.ui.view">
+        <field name="name">student.notebook.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="pages_students" string="University" attrs="{'invisible': [('es_estudiante', '=', False), ('es_candidato', '=', False)]}">
+                    <group attrs="{'invisible': [('es_candidato', '=', True)]}">
+                        <group>
+                            <field name="nro_identificacion"/>
+                            <field name="carrera"/>
+                            <field name="campus_id"/>
+                        </group>
+                    </group>
+
+                    <group attrs="{'invisible': [('es_candidato', '=', False)]}">
+                        <group>
+                            <field name="nro_identificacion"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </page>
+                
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

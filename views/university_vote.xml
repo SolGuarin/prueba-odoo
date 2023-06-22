@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--   -->
+<odoo>
+    <!-- tree view -->
+    <record id="view_tree_university_vote" model="ir.ui.view">
+        <field name="name">university.vote.tree</field>
+        <field name="model">university.vote</field>
+        <field name="arch" type="xml">
+           <tree>
+               <field name="elections_id"/>
+               <field name="student_id"/>
+               <field name="candidate_id"/>
+           </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_university_vote_form" model="ir.ui.view">
+        <field name="name">university.vote.form</field>
+        <field name="model">university.vote</field>
+        <field name="arch" type="xml">
+            <form string="Votes">
+                <group>
+                    <group>
+                        <field name="elections_id"/>
+                        <field name="student_id" domain="[('es_estudiante', '=', True)]"/>
+                        <field name="candidate_id" domain="[('es_candidato', '=', True)]"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="act_university_vote">
+        <field name="name">Votes</field>
+        <field name="res_model">university.vote</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_university_vote" />
+     </record>
+
+    <menuitem id="submenu_university_vote_action" name="Votes"
+              sequence="10" parent="university_campus_menu" action="act_university_vote"/>
+
+</odoo>
+

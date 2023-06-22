@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="vista_pivote">
+            <field name="name">Resultados</field>
+            <field name="model">university.votes.candidate</field>
+            <field name="arch" type="xml">
+                <pivot string="Resultados de la Votación" disable_linking="1">
+                    <field name="election_id" type="row"/>
+                    <field name="candidate_id" type="row"/>
+                    <field name="votes_qty" type="measure" string="Cantidad de Votos"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_university_votes_candidate">
+            <field name="name">Results</field>
+            <field name="res_model">university.votes.candidate</field>
+            <field name="view_mode">pivot</field>
+        </record>
+
+    <menuitem
+            id="submenu_university_votes_candidate_action"
+            name="Results"
+            sequence="10"
+            parent="university_campus_menu"
+            action="act_university_votes_candidate"
+    />
+
+    </data>
+</odoo>
